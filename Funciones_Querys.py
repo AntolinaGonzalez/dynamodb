@@ -9,8 +9,8 @@ playersTable = dynamodb.Table('WorldPlayers')
 cupsTable = dynamodb.Table('WorldCup')
 
 responseMatches = matchesTable.scan()
-responsePlayers = playerTable.scan()
-responseCups = cupTable.scan()
+responsePlayers = playersTable.scan()
+responseCups = cupsTable.scan()
 
 datosMatches = responseMatches['Items']
 datosPlayers = responsePlayers['Items']
@@ -117,9 +117,9 @@ def cantidad_partidos(pais, anio):
 	cont = 0
 
 	for data in datosMatches:
-	    if data['Year'] == anio:
-	        if data['Home Team Name']== pais or data['Away Team Name']== pais:
-	            cont += 1
+		if data['Year'] == anio:
+			if data['Home Team Name']== pais or data['Away Team Name']== pais:
+				cont += 1
 	return cont
 
 #------------------------------------------------------------------------------------------------
@@ -134,10 +134,10 @@ def cantidad_partidos_total(pais):
 	lista = list(ediciones)
 
 	for data in datosMatches:
-    if data['Year'] in lista and (data['Home Team Name'] == pais or data['Away Team Name'] == pais):
-        cont += 1
-        lista.remove(data['Year'])
-        
+		if data['Year'] in lista and (data['Home Team Name'] == pais or data['Away Team Name'] == pais):
+			cont += 1
+			lista.remove(data['Year'])
+		
 	return cont
 
 #-----------------------------------------------------------------------------------------------
@@ -151,16 +151,16 @@ def cantidad_goles(pais, anio):
 	cont = 0
 
 	for data in datosMatches:
-	    
-	    if data['Year']== anio:
-	        
-	        if data['Home Team Name']== pais:
-	            
-	            cont = cont + data['Home Team Goals']
-	       
-	        elif data['Away Team Name']== pais:
-	            
-	            cont = cont + data['Away Team Goals']
+		
+		if data['Year']== anio:
+			
+			if data['Home Team Name']== pais:
+				
+				cont = cont + data['Home Team Goals']
+		   
+			elif data['Away Team Name']== pais:
+				
+				cont = cont + data['Away Team Goals']
 	return cont
 
 
@@ -176,14 +176,14 @@ def cantidad_goles_total(pais):
 	cont = 0
 
 	for data in datosMatches:
-	        
-	    if data['Home Team Name']== pais:
-        
-        	cont = cont + data['Home Team Goals']
-	       
-	    elif data['Away Team Name']== pais:
-        
-        	cont = cont + data['Away Team Goals']
+			
+		if data['Home Team Name']== pais:
+		
+			cont = cont + data['Home Team Goals']
+		   
+		elif data['Away Team Name']== pais:
+		
+			cont = cont + data['Away Team Goals']
 	
 	return cont
 
@@ -207,9 +207,28 @@ def cantidad_campeonatos(pais):
 
 #---------------------------------------------------------------------------------------------------
 
-def cantidad_goles_por_copa(anio):
+def datos_final(anio):
 
 	#Parametro 'anio' un año correspondiente a una edicion de la copa del tipo int() 
+	#Retorna una lista[matchid, estadio, winner, second] 
+
+	salida = []
+
+	for data in datosCups:
+
+		if data['Year'] == anio:
+
+			salida[2] = data['Winner']
+			salida[3] = data['Runners-Up']
+
+	for data in datosMatches:
+
+		if data['Year'] == anio and data['Stage'] == Final:
+
+			salida[0] = data['MatchID']
+			salida[1] = data['Stadium']
+
+	return salida
 
 
 
