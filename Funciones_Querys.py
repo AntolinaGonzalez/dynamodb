@@ -216,19 +216,20 @@ def datos_final(anio):
 
 	for data in datosMatches:
 
-		if data['Year'] == anio and data['Stage'] == 'Final':
+		if data['Year'] == anio and data['Stage'] == "Final":
+
+			print(data['Year'], data['Stage'])
 
 			salida.append(data['MatchID'])
 			salida.append(data['Stadium'])
 
-	for data in datosCups:
-
-		if data['Year'] == anio:
-
-			salida.append(data['Winner'])
-			salida.append(data['Runners-Up'])
-
-	
+			if data['Home Team Goals'] > data['Away Team Goals']:
+				
+				salida.append(data['Home Team Name'])
+				salida.append(data['Away Team Name'])
+			else: 
+				salida.append(data['Away Team Name'])
+				salida.append(data['Home Team Name'])
 
 	return salida
 
