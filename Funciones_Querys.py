@@ -215,18 +215,14 @@ def datos_final(anio):
 
 	for data in datosMatches:
 
-<<<<<<< HEAD
 		if data['Year'] == int(anio) and data['Stage'] == 'Final':
-=======
 		if data['Year'] == int(anio) and data['Stage'] == "Final":
 
 			print(data['Year'], data['Stage'])
->>>>>>> 0a4958e45f7db473f6b2cb57ae748e7a10f12ce2
 
 			salida.append(data['MatchID'])
 			salida.append(data['Stadium'])
 
-<<<<<<< HEAD
 			break
 
 	for data in datosCups:
@@ -245,7 +241,6 @@ def datos_final(anio):
 
 
 
-=======
 			if data['Home Team Goals'] > data['Away Team Goals']:
 				
 				salida.append(data['Home Team Name'])
@@ -253,6 +248,5 @@ def datos_final(anio):
 			else: 
 				salida.append(data['Away Team Name'])
 				salida.append(data['Home Team Name'])
->>>>>>> 0a4958e45f7db473f6b2cb57ae748e7a10f12ce2
 
 	return salida
