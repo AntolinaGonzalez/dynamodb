@@ -214,19 +214,21 @@ def datos_final(anio):
 
 	salida = []
 
+	for data in datosMatches:
+
+		if data['Year'] == anio and data['Stage'] == 'Final':
+
+			salida.append(data['MatchID'])
+			salida.append(data['Stadium'])
+
 	for data in datosCups:
 
 		if data['Year'] == anio:
 
-			salida[2] = data['Winner']
-			salida[3] = data['Runners-Up']
+			salida.append(data['Winner'])
+			salida.append(data['Runners-Up'])
 
-	for data in datosMatches:
-
-		if data['Year'] == anio and data['Stage'] == Final:
-
-			salida[0] = data['MatchID']
-			salida[1] = data['Stadium']
+	
 
 	return salida
 
