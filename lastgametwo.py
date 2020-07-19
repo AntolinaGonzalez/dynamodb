@@ -18,11 +18,8 @@ datosMatches = responseMatches['Items']
 datosCup = responseCup['Items']
 datosPlayer = responsePlayers['Items']
 
-<<<<<<< HEAD
-year = 1978
-=======
+
 year = 1986
->>>>>>> rama2
 
 for data in datosCup:
     if data['Year']==year:
