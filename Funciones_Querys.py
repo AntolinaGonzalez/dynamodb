@@ -1,6 +1,5 @@
 from pprint import pprint
 import boto3
-from boto3.dynamodb.conditions import Key
 
 dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
@@ -218,7 +217,7 @@ def datos_final(anio):
 
 		if data['Year'] == int(anio) and data['Stage'] == "Final":
 
-			salida.append(data['MatchID'])
+			salida.append(int(data['MatchID']))
 			salida.append(data['Stadium'])
 
 			if data['Home Team Goals'] > data['Away Team Goals']:
@@ -228,7 +227,7 @@ def datos_final(anio):
 			else: 
 				salida.append(data['Away Team Name'])
 				salida.append(data['Home Team Name'])
-
+	
 	return salida
 
 
