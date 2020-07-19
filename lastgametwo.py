@@ -18,7 +18,11 @@ datosMatches = responseMatches['Items']
 datosCup = responseCup['Items']
 datosPlayer = responsePlayers['Items']
 
+<<<<<<< HEAD
 year = 1978
+=======
+year = 1986
+>>>>>>> rama2
 
 for data in datosCup:
     if data['Year']==year:
@@ -42,13 +46,23 @@ for data in datosMatches:
     if data['Away Team Name'] == second:
         initialsSecond = data['Away Team Initials']
 
+lista=[]
 print(stadio)
 print(matchId)
+print()  
 print("Jugadores de " + winner)
-
+print()
 for data in datosPlayer:
-    print(data['MatchID'])
-    
+    if data['Team Initials']==initialswinner and data['MatchID']==matchId:
+        print(data['Player Name'])
+print()   
+print("Jugadores de " + second)
+print()
+for data in datosPlayer:
+    if data['Team Initials']==initialsSecond and data['MatchID']==matchId:
+        print(data['Player Name'])
+        
+
 
 
 

@@ -41,15 +41,18 @@ for data in datosMatches:
         initialsSecond= data['Home Team Initials']
     if data['Away Team Name'] == second:
         initialsSecond = data['Away Team Initials']
+
 print(stadio)
 print(matchId)
 print("Jugadores de " + winner)
 
 for data in datosPlayer:
     if 2198 == data['MatchID'] and data['Team Initials']=="ARG":
-        lista.append(data['Player Name'])
+        print(data['Player Name'])
     if data['Player Name']== "Ruben GALVAN":
         print('aparece')
 
-print(lista)
+
+
+
 
