@@ -1,6 +1,5 @@
 from pprint import pprint
 import boto3
-from boto3.dynamodb.conditions import Key
 
 dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
@@ -216,10 +215,12 @@ def datos_final(anio):
 
 	for data in datosMatches:
 
-		if data['Year'] == anio and data['Stage'] == 'Final':
+		if data['Year'] == int(anio) and data['Stage'] == 'Final':
 
 			salida.append(data['MatchID'])
 			salida.append(data['Stadium'])
+
+			break
 
 	for data in datosCups:
 
@@ -227,6 +228,8 @@ def datos_final(anio):
 
 			salida.append(data['Winner'])
 			salida.append(data['Runners-Up'])
+
+			break 
 
 	
 
