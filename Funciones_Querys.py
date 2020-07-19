@@ -216,7 +216,7 @@ def datos_final(anio):
 
 	for data in datosMatches:
 
-		if data['Year'] == anio and data['Stage'] == "Final":
+		if data['Year'] == int(anio) and data['Stage'] == "Final":
 
 			print(data['Year'], data['Stage'])
 
@@ -232,8 +232,3 @@ def datos_final(anio):
 				salida.append(data['Home Team Name'])
 
 	return salida
-
-
-
-
-
