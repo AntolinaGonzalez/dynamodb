@@ -26,6 +26,6 @@ print('The Winner is ' + winner)
 print('The Runners-up is '+ second)
 
 for data in datosMatches:
-    if data['Home Team Name'] == winner and data['Year']== year and data['Away Team Name']==second:
+    if (data['Home Team Name'] == winner or data['Away Team Name'] == winner) and data['Year']== year and (data['Away Team Name']==second or data['Home Team Name'] == second):
         stadio= data['Stadium']
 print(stadio)
