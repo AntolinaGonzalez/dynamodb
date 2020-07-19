@@ -7,7 +7,7 @@ response_cup = cupTable.scan()
 
 cups = response_cup['Items']
 
-x = input('\n\n\tIngrese un anio: \t')
+x = int(input('\n\n\tIngrese un anio: \t'))
 
 for cup in cups: 
 	if int(x) == cup['Year']: 
