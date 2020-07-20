@@ -6,7 +6,7 @@ def create_players_table(dynamodb=None):
         dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
     table = dynamodb.create_table(
-        TableName='WorldPlayersTwo',
+        TableName='WorldPlayers',
         KeySchema=[
             {
                 'AttributeName': 'MatchID',
