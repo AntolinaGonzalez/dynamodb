@@ -85,6 +85,36 @@ def paises_participantes_edicion_particular(anio):
 
 #------------------------------------------------------------------------------------------------
 
+def paises_participantes_todas_ediciones():
+
+	#Retorna una lista con los nombres de los paises participantes de todas las ediciones.
+
+	lista = list()
+	no_participo = list()
+	for match in datosMatches: 
+		for edicion in ediciones: 
+			participantes = paises_participantes_edicion_particular(edicion)
+
+			if match['Home Team Name'] not in participantes: 
+				no_participo.append(match['Home Team Name'])
+			elif match['Away Team Name'] not in participantes: 
+				no_participo.append(match['Away Team Name'])
+				
+	for match in datosMatches: 
+		if match['Home Team Name'] not in lista and match['Home Team Name'] not in no_participo: 
+			lista.append(match['Home Team Name'])
+		elif match['Away Team Name'] not in lista and match['Away Team Name'] not in no_participo: 
+			lista.append(match['Away Team Name'])
+
+	return lista
+
+
+
+
+
+#-----------------------------------------------------------------------------------
+
+
 def es_pais_edicion_particular(pais, anio):
 
 	#Parametro 'pais' el nombre del pais en ingles ej:('Argentina', 'Brazil', 'France') del tipo str()
@@ -244,6 +274,111 @@ def datos_final(anio):
 				salida.append(data['Home Team Name'])
 	
 	return salida
+
+
+#---------------------------------------------
+
+def goles_recibidos_edicion_particular(pais, anio): 
+
+	#Parametro 'pais' el nombre del pais en ingles ej:('Argentina', 'Brazil', 'France') del tipo str()
+	#Parametro 'anio' un año correspondiente a una edicion de la copa del tipo int() 
+	#Retorna la cantidad de goles que convirtio dicha seleccion en el torneo ingresado como anio.
+
+	if es_pais(pais) and es_anio(anio):
+
+		cont = 0
+
+		for data in datosMatches:
+			
+			if data['Year']== int(anio):
+				
+				if data['Home Team Name']== pais:
+					
+					cont = cont + data['Away Team Goals']
+			   
+				elif data['Away Team Name']== pais:
+					
+					cont = cont + data['Home Team Goals']
+		return cont
+
+#-----------------------------------------------------------------
+
+def campeones():  
+
+	#Retorna una lista con todos los campeones de los mundiales y el año en que ganaron
+
+	salida = list()
+
+	for data in datosCups: 
+
+		salida.append(data['Winner'], data['Year'])
+
+	return salida
+
+#--------------------------------------------------------------
+
+
+def es_campeon(pais): 
+
+	#Retorna verdadero si el país especificado fue campeon alguna vez en algún mundial
+
+	campeones_n = []
+
+	for campeon in campeones(): 
+
+		campeones_n.append(campeon[0])
+
+
+	if pais in campeones_n: 
+		return True
+	return False
+
+#--------------------------------------------------------------
+
+def campeon_anio_particular(anio): 
+
+	if es_anio(anio): 
+
+		for cup in datosCups: 
+
+			if cup['Year'] == anio: 
+
+				return cup['Winner']
+
+	else: 
+		print("Ese año no corresponde")
+
+
+
+
+
+
+
+
+#-------------------------------------------------------------
+
+def datos_paises(): 
+
+	salida = dict()
+
+	for edicion in ediciones: 
+
+		anio = str(edicion)
+		nombre = campeon_anio_particular(anio)
+
+		salida[edicion] = (nombre, cantidad_goles_edicion_particular(nombre, anio), goles_recibidos_edicion_particular(nombre,anio))
+
+
+	return salida
+
+
+
+#--------------------------------------------------------------
+
+
+
+
+
 
 
 
