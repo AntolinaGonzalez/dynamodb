@@ -363,9 +363,9 @@ def datos_paises():
 
 	for edicion in ediciones: 
 
-		anio = srt(edicion)
+		anio = str(edicion)
 		nombre = campeon_anio_particular(anio)
-		
+
 		salida[edicion] = (nombre, cantidad_goles_edicion_particular(nombre, anio), goles_recibidos_edicion_particular(nombre,anio))
 
 
