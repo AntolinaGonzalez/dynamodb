@@ -24,7 +24,7 @@ def es_anio(anio):
 	#Parametro 'anio' un año correspondiente a una edicion de la copa del tipo int() 
 	#Retorna True/False si es o no un anio en el que se jugo una copa del mundo.
 
-	if anio in ediciones:
+	if int(anio) in ediciones:
 
 		return True
 
@@ -36,14 +36,14 @@ def paises_participantes():
 
 	#Retorna una lista con los nombres de los paises que participaron de alguna edicion de la copa.
 
-	lista = list()
+	salida = list()
 
 	for data in datosMatches:
-		if data['Home Team Name'] not in lista:	
-			lista.append(data['Home Team Name'])
+		if data['Home Team Name'] not in salida:	
+			salida.append(data['Home Team Name'])
 		
-		if data['Away Team Name'] not in lista:
-			lista.append(data['Away Team Name'])
+		if data['Away Team Name'] not in salida:
+			salida.append(data['Away Team Name'])
 
 	return salida
 #-------------------------------------------------------------------------------------------------
@@ -72,13 +72,13 @@ def paises_participantes_edicion_particular(anio):
 
 		for data in datosMatches:
 
-			if data['Year'] == anio:
+			if data['Year'] == int(anio):
 				
-				if data['Home Team Name'] not in lista:	
-					lista.append(data['Home Team Name'])
+				if data['Home Team Name'] not in salida:	
+					salida.append(data['Home Team Name'])
 				
-				elif data['Away Team Name'] not in lista:
-					lista.append(data['Away Team Name'])
+				elif data['Away Team Name'] not in salida:
+					salida.append(data['Away Team Name'])
 
 		return salida
 
@@ -91,13 +91,13 @@ def es_pais_edicion_particular(pais, anio):
 	#Parametro 'anio' un año correspondiente a una edicion de la copa del tipo int() 
 	#Retorna True/False si es o no un pais que participo de la edicion solicitada
 
-	if pais in paises_participantes_todas_ediciones():
+	if pais in paises_participantes():
 
 		if es_anio(anio):
 
 			for data in datosMatches:
 
-				if data['Year'] == anio:
+				if data['Year'] == int(anio):
 
 					if pais in paises_participantes_edicion_particular(anio):
 
@@ -113,13 +113,15 @@ def cantidad_partidos(pais, anio):
 	#Parametro 'anio' un año correspondiente a una edicion de la copa del tipo int() 
 	#Retorna la cantidad de partidos que disputo dicha seleccion. 
 	
-	cont = 0
+	if es_pais(pais) and es_anio(anio):
 
-	for data in datosMatches:
-		if data['Year'] == anio:
-			if data['Home Team Name']== pais or data['Away Team Name']== pais:
-				cont += 1
-	return cont
+		cont = 0
+
+		for data in datosMatches:
+			if data['Year'] == int(anio):
+				if data['Home Team Name']== pais or data['Away Team Name']== pais:
+					cont += 1
+		return cont
 
 #------------------------------------------------------------------------------------------------
 
@@ -128,39 +130,46 @@ def cantidad_partidos_total(pais):
 	#Parametro 'pais' el nombre del pais en ingles ej:('Argentina', 'Brazil', 'France') del tipo str()
 	#Retorna la cantidad de partidos que disputo dicha seleccion en todas las ediciones de la copa. 
 
-	cont = 0
-	
-	lista = list(ediciones)
+	if es_pais(pais):
 
-	for data in datosMatches:
-		if data['Year'] in lista and (data['Home Team Name'] == pais or data['Away Team Name'] == pais):
-			cont += 1
-			lista.remove(data['Year'])
+		cont = 0
 		
-	return cont
+		lista = list(ediciones)
+
+		for data in datosMatches:
+			
+			if data['Home Team Name'] == pais or data['Away Team Name'] == pais:
+				
+				cont += 1
+		
+		return cont
 
 #-----------------------------------------------------------------------------------------------
 
-def cantidad_goles(pais, anio):
+def cantidad_goles_edicion_particular(pais, anio):
 
 	#Parametro 'pais' el nombre del pais en ingles ej:('Argentina', 'Brazil', 'France') del tipo str()
 	#Parametro 'anio' un año correspondiente a una edicion de la copa del tipo int() 
 	#Retorna la cantidad de goles que convirtio dicha seleccion en el torneo ingresado como anio. 
 	
-	cont = 0
+	
 
-	for data in datosMatches:
-		
-		if data['Year']== anio:
+	if es_pais(pais) and es_anio(anio):
+
+		cont = 0
+
+		for data in datosMatches:
 			
-			if data['Home Team Name']== pais:
+			if data['Year']== int(anio):
 				
-				cont = cont + data['Home Team Goals']
-		   
-			elif data['Away Team Name']== pais:
-				
-				cont = cont + data['Away Team Goals']
-	return cont
+				if data['Home Team Name']== pais:
+					
+					cont = cont + data['Home Team Goals']
+			   
+				elif data['Away Team Name']== pais:
+					
+					cont = cont + data['Away Team Goals']
+		return cont
 
 
 
@@ -172,19 +181,22 @@ def cantidad_goles_total(pais):
 	#Parametro 'anio' un año correspondiente a una edicion de la copa del tipo int() 
 	#Retorna la cantidad total de goles que convirtio dicha seleccion en todas las ediciones.
 	
-	cont = 0
 
-	for data in datosMatches:
+	if es_pais(pais):
+
+		cont = 0
+
+		for data in datosMatches:
+				
+			if data['Home Team Name']== pais:
 			
-		if data['Home Team Name']== pais:
+				cont = cont + data['Home Team Goals']
+			   
+			elif data['Away Team Name']== pais:
+			
+				cont = cont + data['Away Team Goals']
 		
-			cont = cont + data['Home Team Goals']
-		   
-		elif data['Away Team Name']== pais:
-		
-			cont = cont + data['Away Team Goals']
-	
-	return cont
+		return cont
 
 
 #------------------------------------------------------------------------------------------------
@@ -194,15 +206,17 @@ def cantidad_campeonatos(pais):
 	#Parametro 'pais' el nombre del pais en ingles ej:('Argentina', 'Brazil', 'France') del tipo str()
 	#Retorna la cantidad de copas ganadas por dicha seleccion.
 
-	cont = 0
+	if es_pais(pais):
 
-	for data in datosCups:
+		cont = 0
 
-		if data['Winner'] == pais:
+		for data in datosCups:
 
-			cont += 1
+			if data['Winner'] == pais:
 
-	return cont
+				cont += 1
+
+		return cont
 
 #---------------------------------------------------------------------------------------------------
 
