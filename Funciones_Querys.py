@@ -85,6 +85,33 @@ def paises_participantes_edicion_particular(anio):
 
 #------------------------------------------------------------------------------------------------
 
+def paises_participantes_todas_ediciones():
+
+	#Retorna una lista con los nombres de los paises participantes de todas las ediciones.
+
+	lista = list()
+	no_participo = list()
+	for match in datosMatches: 
+		for edicion in ediciones: 
+			participantes = paises_participantes_edicion_particular(edicion)
+
+			if match['Home Team Name'] not in participantes: 
+				no_participo.append(match['Home Team Name'])
+			elif match['Away Team Name'] not in participantes: 
+				no_participo.append(match['Away Team Name'])
+				
+	for match in datosMatches: 
+		if match['Home Team Name'] not in lista and match['Home Team Name'] not in no_participo: 
+			lista.append(match['Home Team Name'])
+		elif match['Away Team Name'] not in lista and match['Away Team Name'] not in no_participo: 
+			lista.append(match['Away Team Name'])
+
+	return lista
+
+
+
+#--------------------------------------------------------------------------------------
+
 def es_pais_edicion_particular(pais, anio):
 
 	#Parametro 'pais' el nombre del pais en ingles ej:('Argentina', 'Brazil', 'France') del tipo str()
