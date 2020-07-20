@@ -341,7 +341,7 @@ def campeon_anio_particular(anio):
 
 		for cup in datosCups: 
 
-			if cup['Year'] == anio: 
+			if cup['Year'] == int(anio): 
 
 				return cup['Winner']
 
@@ -364,10 +364,10 @@ def datos_paises():
 	for edicion in ediciones: 
 
 		anio = str(edicion)
+
 		nombre = campeon_anio_particular(anio)
 
-		salida[edicion] = (nombre, cantidad_goles_edicion_particular(nombre, anio), goles_recibidos_edicion_particular(nombre,anio))
-
+		salida[edicion] = (nombre, int(cantidad_goles_edicion_particular(nombre, anio)), int(goles_recibidos_edicion_particular(nombre,anio)))
 
 	return salida
 
@@ -375,10 +375,21 @@ def datos_paises():
 
 #--------------------------------------------------------------
 
+def campeon_con_max_dif_goles(): 
 
+	paises = datos_paises()
 
+	maximo = paises[1930][1] - paises[1930][2]
 
+	salida = [paises[1930][0], maximo,1930]
 
+	for edicion in ediciones: 
 
+		diferencia = paises[edicion][1] - paises[edicion][2]
 
+		if diferencia > maximo: 
 
+			maximo = diferencia 
+			salida = [paises[edicion][0], maximo, edicion]
+
+	return salida
