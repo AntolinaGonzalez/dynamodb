@@ -53,7 +53,7 @@ def es_pais(pais):
 	#Parametro 'pais' el nombre del pais en ingles ej:('Argentina', 'Brazil', 'France') del tipo str()
 	#Retorna True/False si es o no un pais que participo de algun mundial
 
-	if pais in paises_participantes_todas_ediciones():
+	if pais in paises_participantes():
 
 		return True
 
