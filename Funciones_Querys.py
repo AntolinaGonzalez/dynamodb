@@ -32,17 +32,17 @@ def es_anio(anio):
 
 #------------------------------------------------------------------------------------------------
 
-def paises_participantes_todas_ediciones():
+def paises_participantes():
 
-	#Retorna una lista con los nombres de los paises participantes de todas las ediciones.
+	#Retorna una lista con los nombres de los paises que participaron de alguna edicion de la copa.
 
-	salida = list()
+	lista = list()
 
 	for data in datosMatches:
 		if data['Home Team Name'] not in lista:	
 			lista.append(data['Home Team Name'])
 		
-		elif data['Away Team Name'] not in lista:
+		if data['Away Team Name'] not in lista:
 			lista.append(data['Away Team Name'])
 
 	return salida
