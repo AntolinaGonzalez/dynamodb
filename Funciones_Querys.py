@@ -32,35 +32,6 @@ def es_anio(anio):
 
 #------------------------------------------------------------------------------------------------
 
-def paises_participantes_todas_ediciones():
-
-	#Retorna una lista con los nombres de los paises participantes de todas las ediciones.
-
-	salida = list()
-
-	for data in datosMatches:
-		if data['Home Team Name'] not in lista:	
-			lista.append(data['Home Team Name'])
-		
-		elif data['Away Team Name'] not in lista:
-			lista.append(data['Away Team Name'])
-
-	return salida
-#-------------------------------------------------------------------------------------------------
-
-def es_pais(pais):
-
-	#Parametro 'pais' el nombre del pais en ingles ej:('Argentina', 'Brazil', 'France') del tipo str()
-	#Retorna True/False si es o no un pais que participo de algun mundial
-
-	if pais in paises_participantes_todas_ediciones():
-
-		return True
-
-	return False
-
-#------------------------------------------------------------------------------------------------
-
 def paises_participantes_edicion_particular(anio):
 
 	##Parametro 'anio' un año correspondiente a una edicion de la copa del tipo int() 
@@ -74,13 +45,49 @@ def paises_participantes_edicion_particular(anio):
 
 			if data['Year'] == anio:
 				
-				if data['Home Team Name'] not in lista:	
-					lista.append(data['Home Team Name'])
+				if data['Home Team Name'] not in salida:	
+					salida.append(data['Home Team Name'])
 				
-				elif data['Away Team Name'] not in lista:
-					lista.append(data['Away Team Name'])
+				elif data['Away Team Name'] not in salida:
+					salida.append(data['Away Team Name'])
 
 		return salida
+#-----------------------------------------------------------------------------------
+
+def paises_participantes_todas_ediciones():
+
+	#Retorna una lista con los nombres de los paises participantes de todas las ediciones.
+
+	lista = list()
+	no_participo = list()
+	for match in datosMatches: 
+		for edicion in ediciones: 
+			participantes = paises_participantes_edicion_particular(edicion)
+
+			if match['Home Team Name'] not in participantes: 
+				no_participo.append(match['Home Team Name'])
+			elif match['Away Team Name'] not in participantes: 
+				no_participo.append(match['Away Team Name'])
+	for match in datosMatches: 
+		if match['Home Team Name'] not in lista and match['Home Team Name'] not in no_participo: 
+			lista.append(match['Home Team Name'])
+		elif match['Away Team Name'] not in lista and match['Away Team Name'] not in no_participo: 
+			lista.append(match['Away Team Name'])
+
+	return lista
+#-----------------------------------------------------------------------------------------------
+def es_pais(pais):
+	#Parametro 'pais' el nombre del pais en ingles ej:('Argentina', 'Brazil', 'France') del tipo str()
+	#Retorna True/False si es o no un pais que participo de algun mundial
+
+	if pais in paises_participantes_todas_ediciones():
+
+		return True
+
+	return False
+
+#------------------------------------------------------------------------------------------------
+
 
 
 #------------------------------------------------------------------------------------------------

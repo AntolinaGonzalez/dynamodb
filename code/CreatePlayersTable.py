@@ -9,12 +9,12 @@ def create_players_table(dynamodb=None):
         TableName='WorldPlayers',
         KeySchema=[
             {
-                'AttributeName': 'Player Name',
+                'AttributeName': 'MatchID',
                 'KeyType': 'HASH'  # Partition key
             },
 
             {
-                'AttributeName': 'MatchID', 
+                'AttributeName': 'Player Name', 
                 'KeyType': 'RANGE' # Sort Key
             }
         ],
