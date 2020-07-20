@@ -253,7 +253,7 @@ def cantidad_campeonatos(pais):
 def datos_final(anio):
 
 	#Parametro 'anio' un año correspondiente a una edicion de la copa del tipo int() 
-	#Retorna una lista[matchid, estadio, winner, second] 
+	#Retorna una lista[matchid, estadio, winner, winner initials , second, second initials ] 
 
 	salida = []
 
@@ -268,10 +268,14 @@ def datos_final(anio):
 			if data['Home Team Goals'] > data['Away Team Goals']:
 				
 				salida.append(data['Home Team Name'])
+				salida.append(data['Home Team Initials'])
 				salida.append(data['Away Team Name'])
+				salida.append(data['Away Team Initials'])
 			else: 
 				salida.append(data['Away Team Name'])
+				salida.append(data['Away Team Initials'])
 				salida.append(data['Home Team Name'])
+				salida.append(data['Home Team Initials'])
 	
 	return salida
 
@@ -345,16 +349,6 @@ def campeon_anio_particular(anio):
 
 				return cup['Winner']
 
-	else: 
-		print("Ese año no corresponde")
-
-
-
-
-
-
-
-
 #-------------------------------------------------------------
 
 def datos_paises(): 
@@ -373,7 +367,7 @@ def datos_paises():
 
 
 
-#--------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------------------------
 
 def campeon_con_max_dif_goles(): 
 
@@ -393,3 +387,59 @@ def campeon_con_max_dif_goles():
 			salida = [paises[edicion][0], maximo, edicion]
 
 	return salida
+
+
+#------------------------------------------------------------------------------------------------------------------------
+
+def campeon_con_min_dif_goles(): 
+
+	paises = datos_paises()
+
+	minimo = paises[1930][1] - paises[1930][2]
+
+	salida = [paises[1930][0], minimo,1930]
+
+	for edicion in ediciones: 
+
+		diferencia = paises[edicion][1] - paises[edicion][2]
+
+		if diferencia < minimo: 
+
+			minimo = diferencia 
+			salida = [paises[edicion][0], minimo, edicion]
+
+	return salida
+
+#------------------------------------------------------------------------------------------------------------------------
+
+
+def jugadores_equipo_campeon(anio):
+
+
+	datos = datos_final(anio)
+
+	matchid = int(datos[0])
+
+	print(matchid)
+
+	pais = datos[3]
+
+	print(pais)
+
+	salida = list()
+
+	for jugador in datosPlayers:
+
+		if int(jugador['MatchID']) == matchid:
+
+			if jugador['Team Initials'] == pais:
+
+				salida.append(jugador['Player Name'])
+
+	return salida 
+
+
+
+
+
+
