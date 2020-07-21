@@ -11,3 +11,5 @@ print()
 for jug in jugadores_equipo_campeon(x):
 
 	print("\t\t", jug)
+
+
