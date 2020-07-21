@@ -18,6 +18,6 @@ def load_matches(matches, dynamodb=None):
 
 
 if __name__ == '__main__':
-    with open("WorldCupMatches.json") as json_file:
+    with open("../WorldCupMatches.json") as json_file:
         matches_list = json.load(json_file, parse_float=Decimal)
     load_matches(matches_list)
