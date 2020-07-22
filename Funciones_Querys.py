@@ -422,10 +422,10 @@ def jugadores_equipo_campeon(anio):
 
 	matchid = datos[0]
 
-	print(type(matchid))
+	#print(type(matchid))
 
 	pais = datos[3]
-
+	print('Pais ganador: ' + datos[2])
 	salida = list()
 
 	for jugador in datosPlayers:
@@ -439,7 +439,9 @@ def jugadores_equipo_campeon(anio):
 	return salida 
 
 
-
+def mostrarPantalla(unaLista):
+	for i in range(len(unaLista)):
+		print(unaLista[i])
 
 
 

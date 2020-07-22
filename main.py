@@ -11,7 +11,7 @@ def screen_clear():
 
 def menuOpciones():
     print('---------------Menu-----------------')
-    print('1  - Consulta 1 (se esfecifica) ')
+    print('1  - Dado un anio se devuelve el ganador y sus respectivos jugadores ')
     print('2 - Consulta dos ')
     print('3 - Consulta tres ')
     print('4 - Consulta cuatro ')
@@ -22,11 +22,11 @@ print('----------------------------------------------------------------------')
 print('             Trabajo Final: Gestion de Bases de Datos                  ')
 print('                 Base de Datos: DynamoDB AMAZON                        ')
 print('----Integrantes: ')
-print('-------> Anto lo mas')
-print('-------> Anto lo mas')
-print('-------> Anto lo mas')
-print('-------> Anto lo mas')
-print('-------> Anto lo mas')
+print('-------> Badaro Maximiliano')
+print('-------> Cao Luis Gonzalo')
+print('-------> Gonzalez Antolina')
+print('-------> Mambrin Ventre Jonathan')
+print('-------> Rolon Tomas')
 
 x = input()
 
@@ -38,7 +38,9 @@ while salir == False:
     x = input('Elija una opcion de consulta\n')
     if x == '1':
         print('---Consulta uno----')
-        x = input()
+        x = int(input('Ingrese un anio \n'))
+        mostrarPantalla(jugadores_equipo_campeon(x))
+        x=input()
     elif x == '2':
         print('---Consulta dos----')
         x = input()
