@@ -10,17 +10,19 @@ def screen_clear():
       _ = system('clear')
 
 def menuOpciones():
-    print('---------------Menu-----------------')
-    print('1  - Consulta 1 (se esfecifica) ')
-    print('2 - Consulta dos ')
-    print('3 - Consulta tres ')
-    print('4 - Consulta cuatro ')
-    print('5 - Consulta cinco ')
+    print('---------------------------Menu---------------------------\n')
+    print('\t1 - Paises participantes de la Copa Mundial \n\t    a partir de un año ingresado  \n')
+    print('\t2 - Cantidad de goles en una Copa Mundial  \n\t    a partir de un año y pais ingresado  \n')
+    print('\t3 - Consulta tres ')
+    print('\t4 - Consulta cuatro ')
+    print('\t5 - Consulta cinco ')
+    print('\t0 - Salir')
 
 
-print('----------------------------------------------------------------------')
-print('             Trabajo Final: Gestion de Bases de Datos                  ')
-print('                 Base de Datos: DynamoDB AMAZON                        ')
+print('-----------------------------------------------------------------------')
+print('             Trabajo Final: Gestion de Datos                           ')
+print('                  Gestor: DynamoDB AMAZON                              ')
+print('-----------------------------------------------------------------------')
 print('----Integrantes: ')
 print('-------> Anto lo mas')
 print('-------> Anto lo mas')
@@ -28,20 +30,100 @@ print('-------> Anto lo mas')
 print('-------> Anto lo mas')
 print('-------> Anto lo mas')
 
-x = input()
+input()
 
 
-salir = False
-while salir == False:
+
+
+while True:
+    
     screen_clear()
+    
     menuOpciones()
+    
+    op = ('0', '1', '2', '3', '4', '5')
+
     x = input('Elija una opcion de consulta\n')
+    
+    screen_clear()
+    
+    while x not in op:
+        
+        menuOpciones()
+        x = input('Elija una opcion de consulta\n')
+        screen_clear()
+
     if x == '1':
-        print('---Consulta uno----')
-        x = input()
+        
+        y =input('\tIngrese un año para consultar:\t')
+        screen_clear()
+
+        print('\n\n\tPaises participantes del año: '+ y + "\n")
+        
+        for pais in paises_participantes_edicion_particular(y):
+
+            print("\t\t",pais)
+
+        
+        input("\nPresione cualquier tecla para volver al menu")
+
+
+
     elif x == '2':
-        print('---Consulta dos----')
-        x = input()
+
+        print("\tEdiciones: ", ediciones)
+        z = input('\n\tIngrese un año:\t')
+        screen_clear()
+        print(f"\tPaises participantes para el año: {z}\n")
+
+        paises = paises_participantes_edicion_particular(z)
+
+        cont = 0
+
+        for i in range(len(paises) // 5): 
+            print()
+            for j in range(5): 
+
+                if cont == len(paises):
+                    break
+                else: 
+                    print("|  "+ paises[cont], end=' |')
+                    cont += 1    
+
+        
+        y = input('\n\n\tIngrese un pais para consultar:\t')
+        
+        screen_clear()
+        
+        while es_pais_edicion_particular(y, z) == False:
+
+            print("\tEdiciones: ", ediciones)
+            z = input('\n\tIngrese un año:\t')
+            screen_clear()
+            print(f"\tPaises participantes para el año: {z}\n")
+
+            paises = paises_participantes_edicion_particular(z)
+
+            cont = 0
+
+            for i in range(len(paises) // 5): 
+                print()
+                for j in range(5): 
+
+                    if cont == len(paises):
+                        break
+                    else: 
+                        print("|  "+ paises[cont], end=' |')
+                        cont += 1    
+        
+        screen_clear()
+            
+
+
+        print(f"\n\n\tCantidad de goles del equipo {y} en el año {z} : {cantidad_goles_edicion_particular(y, z)}")
+
+        input("\nPresione cualquier tecla para volver al menu")
+        
     elif x == '3':
         print('---Consulta tres----')
         x = input()
@@ -52,5 +134,5 @@ while salir == False:
         print('---Consulta cinco----')
         x = input()
     else:
-        salir = True
+        break
     
