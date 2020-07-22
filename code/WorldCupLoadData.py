@@ -18,6 +18,6 @@ def load_fifa_cup(world_cups, dynamodb=None):
 
 
 if __name__ == '__main__':
-    with open("WorldCup.json") as json_file:
+    with open("../WorldCup.json") as json_file:
         cup_list = json.load(json_file, parse_float=Decimal)
     load_fifa_cup(cup_list)

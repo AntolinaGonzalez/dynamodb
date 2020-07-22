@@ -262,7 +262,7 @@ def datos_final(anio):
 		if data['Year'] == int(anio) and data['Stage'] == "Final":
 
 
-			salida.append(int(data['MatchID']))
+			salida.append(data['MatchID'])
 			salida.append(data['Stadium'])
 
 			if data['Home Team Goals'] > data['Away Team Goals']:
@@ -415,22 +415,22 @@ def campeon_con_min_dif_goles():
 
 def jugadores_equipo_campeon(anio):
 
+	#Retorna una lista() con los nombres de los jugadores que participaron en el torneo para dicho equipo,
+	#Anda bien con los anios: 1930, 1934, 1938, 1970, 1986 
 
 	datos = datos_final(anio)
 
-	matchid = int(datos[0])
+	matchid = datos[0]
 
-	print(matchid)
+	#print(type(matchid))
 
 	pais = datos[3]
-
-	print(pais)
-
+	print('Pais ganador: ' + datos[2])
 	salida = list()
 
 	for jugador in datosPlayers:
 
-		if int(jugador['MatchID']) == matchid:
+		if jugador['MatchID'] == matchid:
 
 			if jugador['Team Initials'] == pais:
 
@@ -439,7 +439,9 @@ def jugadores_equipo_campeon(anio):
 	return salida 
 
 
-
+def mostrarPantalla(unaLista):
+	for i in range(len(unaLista)):
+		print(unaLista[i])
 
 
 

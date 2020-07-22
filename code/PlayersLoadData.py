@@ -19,6 +19,6 @@ def load_players(players, dynamodb=None):
 
 
 if __name__ == '__main__':
-    with open("WorldCupPlayers.json") as json_file:
+    with open("../WorldCupPlayers.json") as json_file:
         players_list = json.load(json_file, parse_float=Decimal)
     load_players(players_list)
