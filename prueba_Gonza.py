@@ -1,13 +1,15 @@
 
 from Funciones_Querys import *
+'''
+y = 0
 
-x = input("\n\tIngrese un anio: \t")
+while y not in ediciones: 
+    print("\tEdiciones: ", ediciones)
+    y =input('\tIngrese un año para consultar:\t')
+    screen_clear()
+'''
 
-#y = input("\n\n\tIngrese un anio: \t")
-
-print()
-imprimir_Lista_1_columna(jugadores_equipo_campeon(x))
-
+imprimir_Lista_n_columnas(ediciones, 4 )
 
 
 

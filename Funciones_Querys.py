@@ -478,5 +478,22 @@ def imprimir_Lista_1_columna(unaLista):
 
 		print(f'\t{unaLista[i]}')
 
+#--------------------------------------------------------------------------------------------------------------
+
+def imprimir_Lista_n_columnas(unaLista, n ):
+
+	#Recibe como parametro una lista() y un numero entero
+	#Imprime los datos en n columnas 
+
+	cont = 0
+
+	for i in range(len(unaLista) // n): 
+		print()
+		for j in range(n):
+			if cont != len(unaLista):
+				print("|  ", unaLista[cont], end=' |')
+				cont += 1
+			else: 
+				break   
 
 
