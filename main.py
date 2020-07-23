@@ -56,7 +56,9 @@ while True:
         screen_clear()
 
     if x == '1':
-        y =0
+
+        y = 0
+
         while y not in ediciones: 
             print("\tEdiciones: ", ediciones)
             y =input('\tIngrese un año para consultar:\t')
@@ -131,8 +133,17 @@ while True:
 
         
     elif x == '3':
-        print('---Consulta tres----')
+
+        anio = input("\n\tIngrese un anio: \t")
+
+        while not es_anio(anio):
+            
+        
+
         x = input()
+
+
+
     elif x == '4':
         print('---Consulta cuatro----')
         x = input()

@@ -5,14 +5,17 @@ dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
 matchesTable = dynamodb.Table('WorldMatches')
 playersTable = dynamodb.Table('WorldPlayers')
+playersTableFinal = dynamodb.Table('WorldPlayersFinal')
 cupsTable = dynamodb.Table('WorldCup')
 
 responseMatches = matchesTable.scan()
 responsePlayers = playersTable.scan()
+responsePlayersFinal = playersTableFinal.scan()
 responseCups = cupsTable.scan()
 
 datosMatches = responseMatches['Items']
 datosPlayers = responsePlayers['Items']
+datosPlayersFinal = responsePlayersFinal['Items']
 datosCups = responseCups['Items']
 
 ediciones = (1930,1934,1938,1950,1954,1958,1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014)
@@ -422,13 +425,38 @@ def jugadores_equipo_campeon(anio):
 
 	matchid = datos[0]
 
-	#print(type(matchid))
-
 	pais = datos[3]
-	print('Pais ganador: ' + datos[2])
+	
 	salida = list()
 
-	for jugador in datosPlayers:
+	for jugador in datosPlayersFinal:
+
+		if jugador['MatchID'] == matchid:
+
+			if jugador['Team Initials'] == pais:
+
+				salida.append(jugador['Player Name'])
+
+	return salida 
+
+#--------------------------------------------------------------------------------------------------------------
+
+def jugadores_equipo_subcampeon(anio):
+
+	#Retorna una lista[matchid, estadio, winner, winner initials , second, second initials ] 
+
+	#Retorna una lista() con los nombres de los jugadores que participaron en el torneo para dicho equipo,
+	#Anda bien con los anios: 1930, 1934, 1938, 1970, 1986 
+
+	datos = datos_final(anio)
+
+	matchid = datos[0]
+
+	pais = datos[5]
+	
+	salida = list()
+
+	for jugador in datosPlayersFinal:
 
 		if jugador['MatchID'] == matchid:
 
@@ -439,9 +467,16 @@ def jugadores_equipo_campeon(anio):
 	return salida 
 
 
-def mostrarPantalla(unaLista):
+#--------------------------------------------------------------------------------------------------------------
+
+def imprimir_Lista_1_columna(unaLista):
+
+	#Recibe como parametro una lista()
+	#Imprime en una columna todos los datos
+
 	for i in range(len(unaLista)):
-		print(unaLista[i])
+
+		print(f'\t{unaLista[i]}')
 
 
 
