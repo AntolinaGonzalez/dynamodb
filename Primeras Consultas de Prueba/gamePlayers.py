@@ -18,7 +18,7 @@ datosMatches = responseMatches['Items']
 datosPlayers = responsePlayers['Items']
 datosCups = responseCups['Items']
 
-year = 1990
+year = 2014
 
 for data in datosCups:
     if data['Year']==year:

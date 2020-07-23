@@ -43,7 +43,7 @@ def menuOpciones():
     print('\t|                                                                                  |')
     print('\t| 2 - Cantidad de goles en una Copa Mundial a partir de un año y pais ingresado    |')
     print('\t|                                                                                  |')
-    print('\t| 3 - Consulta tres                                                                |')
+    print('\t| 3 - Datos final de copa segun año: Estadio, Campeon, subcampeon y planteles      |')
     print('\t|                                                                                  |')
     print('\t| 4 - Consulta cuatro                                                              |')
     print('\t|                                                                                  |')

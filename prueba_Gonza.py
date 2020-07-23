@@ -1,12 +1,33 @@
 from Funciones_Querys import *
 
-y = 0
+#Retorna una lista[matchid, estadio, winner, winner initials , second, second initials ] 
 
-while y not in ediciones: 
-    imprimir_Lista_n_columnas(ediciones, 10 )
-    y =input('\n\tIngrese un año para consultar:\t')
-    screen_clear()
 
+
+x = input('\tIngrese un anio: ')
+
+datos = datos_final(x)
+
+
+print('\n--------------------------------------------------------------------------')
+print(f'\n\tEstadio donde se disputó la final: {datos[1]}            año {x}')
+print('----------------------------------------------------------------------------')
+print("\n\tCampeón:  " + datos[2] + "\n\n")
+
+for data in datosPlayersFinal:
+
+    if datos[0] == data['MatchID'] and datos[3] == data['Team Initials']:
+        
+        print("\t" + data['Player Name'])
+
+print('----------------------------------------------------------------------------')
+print("\n\tSubcampeón:  " + datos[4] + "\n\n")
+
+for data in datosPlayersFinal:
+
+    if datos[0] == data['MatchID'] and datos[5] == data['Team Initials']:
+        
+        print("\t" + data['Player Name'])
 
 
 
