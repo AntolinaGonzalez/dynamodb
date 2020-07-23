@@ -1,67 +1,41 @@
 from Funciones_Querys import *
-from os import system, name
-from time import sleep
-
-
-def screen_clear():
-   if name == 'nt':
-      _ = system('cls')
-   else:
-      _ = system('clear')
-
-def menuOpciones():
-
-    print('---------------------------Menu---------------------------\n')
-    print('\t1 - Paises participantes de la Copa Mundial \n\t    a partir de un año ingresado  \n')
-    print('\t2 - Cantidad de goles en una Copa Mundial  \n\t    a partir de un año y pais ingresado  \n')
-    print('\t3 - Consulta tres ')
-    print('\t4 - Consulta cuatro ')
-    print('\t5 - Consulta cinco ')
-    print('\t0 - Salir')
 
 
 
-print('-----------------------------------------------------------------------')
-print('             Trabajo Final: Gestion de Datos                           ')
-print('                  Gestor: DynamoDB AMAZON                              ')
-print('-----------------------------------------------------------------------')
-print('----Integrantes: ')
-print('-------> Badaro Maximiliano')
-print('-------> Cao Luis Gonzalo')
-print('-------> Gonzalez Antolina')
-print('-------> Mambrin Ventre Jonathan')
-print('-------> Rolon Tomas')
-
-input()
-
+portada()
 
 
 
 while True:
     
-    screen_clear()
-    
-    menuOpciones()
-    
-    op = ('0', '1', '2', '3', '4', '5')
+    x = '6'
 
-    x = input('Elija una opcion de consulta\n')
-    
-    screen_clear()
+    op = ('0', '1', '2', '3', '4', '5')
     
     while x not in op:
+
+        screen_clear()
         
         menuOpciones()
-        x = input('Elija una opcion de consulta\n')
-        screen_clear()
 
+        x = input('\n\n\tElija una opcion de consulta:\t')
+        
+    screen_clear()   
+
+
+#----------------------------------------------------------------
     if x == '1':
+
+        print('\n\t1 - Paises participantes de la Copa Mundial a partir de un año ingresado  \n\n')
 
         y = 0
 
-        while y not in ediciones: 
-            print("\tEdiciones: ", ediciones)
-            y =input('\tIngrese un año para consultar:\t')
+        while int(y) not in ediciones: 
+
+            imprimir_Lista_n_columnas(ediciones, 10 )
+
+            y =input('\n\n\tIngrese un año para consultar:\t')
+
             screen_clear()
 
         print('\n\n\tPaises participantes del año: '+ y + "\n")
@@ -74,72 +48,51 @@ while True:
         input("\nPresione cualquier tecla para volver al menu")
 
 
-
+    #----------------------------------------------------------------------------------------------------
     elif x == '2':
 
-        print("\tEdiciones: ", ediciones)
-        z = input('\n\tIngrese un año:\t')
-        screen_clear()
-        print(f"\tPaises participantes para el año: {z}\n")
+        z = 0
 
-        paises = paises_participantes_edicion_particular(z)
+        y = ' '
+          
+        while int(z) not in ediciones: 
 
-        cont = 0
+            print('\n\t2 - Cantidad de goles en una Copa Mundial a partir de un año y pais ingresado  \n\n')
 
-        for i in range(len(paises) // 5): 
-            print()
-            for j in range(5): 
+            imprimir_Lista_n_columnas(ediciones, 10 )
 
-                if cont == len(paises):
-                    break
-                else: 
-                    print("|  "+ paises[cont], end=' |')
-                    cont += 1    
+            z =input('\n\n\tIngrese un año para consultar:\t')
 
-        
-        y = input('\n\n\tIngrese un pais para consultar:\t')
-        
-        screen_clear()
-        
-        while not es_pais_edicion_particular(y, z):
-
-            print("\tEdiciones: ", ediciones)
-            z = input('\n\tIngrese un año:\t')
             screen_clear()
+
+        
+        screen_clear()
+
+        
+        while y not in paises_participantes_edicion_particular(z):
+
+            screen_clear()
+
+            print(f'\n\t2 - Cantidad de goles en una Copa Mundial a partir de un año y pais ingresado  \n\n')
+
             print(f"\tPaises participantes para el año: {z}\n")
 
             paises = paises_participantes_edicion_particular(z)
 
-            cont = 0
+            imprimir_Lista_n_columnas(paises, 5 )
 
-            for i in range(len(paises) // 5): 
-                print()
-                for j in range(5): 
+            y = input('\n\n\tIngrese un pais para consultar:\t')
 
-                    if cont == len(paises):
-                        break
-                    else: 
-                        print("|  "+ paises[cont], end=' |')
-                        cont += 1    
-        
+               
         screen_clear()
             
-
-
-        print(f"\n\n\tCantidad de goles del equipo {y} en el año {z} : {cantidad_goles_edicion_particular(y, z)}")
+        print(f"\n\n\tLa cantidad de goles de {y} en la edicion {z} fué {cantidad_goles_edicion_particular(y, z)} goles")
 
         input("\nPresione cualquier tecla para volver al menu")
        
 
-        
+    #---------------------------------------------------------------------------------------------------------------------
     elif x == '3':
-
-        y = 0
-
-        while y not in ediciones: 
-            print("\tEdiciones: ", ediciones)
-            y =input('\tIngrese un año para consultar:\t')
-            screen_clear()
 
         
 

@@ -1,4 +1,6 @@
 from pprint import pprint
+from os import system, name
+from time import sleep
 import boto3
 
 dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
@@ -19,6 +21,56 @@ datosPlayersFinal = responsePlayersFinal['Items']
 datosCups = responseCups['Items']
 
 ediciones = (1930,1934,1938,1950,1954,1958,1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014)
+
+
+#------------------------------------------------------------------------------------------------
+
+def screen_clear():
+   if name == 'nt':
+      _ = system('cls')
+   else:
+      _ = system('clear')
+
+#------------------------------------------------------------------------------------------------
+
+def menuOpciones():
+
+    print('\t+----------------------------------------------------------------------------------+')
+    print('\t|                                Menú de opciones                                  |')
+    print('\t+----------------------------------------------------------------------------------+')
+    print('\t|                                                                                  |')
+    print('\t| 1 - Paises participantes de la Copa Mundial a partir de un año ingresado         |')
+    print('\t|                                                                                  |')
+    print('\t| 2 - Cantidad de goles en una Copa Mundial a partir de un año y pais ingresado    |')
+    print('\t|                                                                                  |')
+    print('\t| 3 - Consulta tres                                                                |')
+    print('\t|                                                                                  |')
+    print('\t| 4 - Consulta cuatro                                                              |')
+    print('\t|                                                                                  |')
+    print('\t| 5 - Consulta cinco                                                               |')
+    print('\t|                                                                                  |')
+    print('\t| 0 - Salir                                                                        |')
+    print('\t+----------------------------------------------------------------------------------+')
+
+#------------------------------------------------------------------------------------------------
+
+def portada():
+
+    print('\t+----------------------------------------------------------------------------------+')
+    print('\t|                          Trabajo Final - Gestión de Datos                        |')
+    print('\t|   UTN-Frre                    Gestor: DynamoDB Amazon                  año 2020  |')
+    print('\t+----------------------------------------------------------------------------------+')
+    print('\t|                                                                                  |')
+    print('\t|            Grupo 1                                         Profesores            |')
+    print('\t|                                                                                  |')
+    print('\t|-------> Badaró, Maximiliano                        * Orcola, Carolina <----------|')
+    print('\t|-------> Cao, Luis Gonzalo                          * Fernandez, Juan Carlos <----|')
+    print('\t|-------> Gonzalez, Antolina                         * Romero, Leandro  <----------|')
+    print('\t|-------> Mambrin Ventre, Jonathan                                                 |')
+    print('\t|-------> Rolón, Tomás                                                             |')
+    print('\t+----------------------------------------------------------------------------------+')
+    
+    input()
 
 #------------------------------------------------------------------------------------------------
 
@@ -487,13 +539,13 @@ def imprimir_Lista_n_columnas(unaLista, n ):
 
 	cont = 0
 
-	for i in range(len(unaLista) // n): 
+	for i in range((len(unaLista) // n )+1): 
 		print()
 		for j in range(n):
-			if cont != len(unaLista):
-				print("|  ", unaLista[cont], end=' |')
-				cont += 1
+			if cont == len(unaLista):
+				break
 			else: 
-				break   
+				print("|  ", unaLista[cont], end=' |')
+				cont += 1  
 
 
