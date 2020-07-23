@@ -56,9 +56,11 @@ while True:
         screen_clear()
 
     if x == '1':
-        
-        y =input('\tIngrese un año para consultar:\t')
-        screen_clear()
+        y =0
+        while y not in ediciones: 
+            print("\tEdiciones: ", ediciones)
+            y =input('\tIngrese un año para consultar:\t')
+            screen_clear()
 
         print('\n\n\tPaises participantes del año: '+ y + "\n")
         
@@ -97,7 +99,7 @@ while True:
         
         screen_clear()
         
-        while es_pais_edicion_particular(y, z) == False:
+        while not es_pais_edicion_particular(y, z):
 
             print("\tEdiciones: ", ediciones)
             z = input('\n\tIngrese un año:\t')
