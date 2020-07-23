@@ -7,20 +7,20 @@ from boto3.dynamodb.conditions import Key
 dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 lista=[]
 matchesTable = dynamodb.Table('WorldMatches')
-cupTable = dynamodb.Table('WorldCup')
-playerTable = dynamodb.Table('WorldPlayers')
+playersTable = dynamodb.Table('WorldPlayersFinal')
+cupsTable = dynamodb.Table('WorldCup')
 
 responseMatches = matchesTable.scan()
-responseCup = cupTable.scan()
-responsePlayers = playerTable.scan()
+responsePlayers = playersTable.scan()
+responseCups = cupsTable.scan()
 
 datosMatches = responseMatches['Items']
-datosCup = responseCup['Items']
-datosPlayer = responsePlayers['Items']
+datosPlayers = responsePlayers['Items']
+datosCups = responseCups['Items']
 
-year = 1978
+year = 2014
 
-for data in datosCup:
+for data in datosCups:
     if data['Year']==year:
         winner = data['Winner']
         second = data['Runners-Up']
@@ -45,14 +45,17 @@ for data in datosMatches:
 print(stadio)
 print(matchId)
 print("Jugadores de " + winner)
-
-for data in datosPlayer:
-    if 2198 == data['MatchID'] and data['Team Initials']=="ARG":
+print('----------------------------------------------------------------------------')
+for data in datosPlayers:
+    if matchId == data['MatchID'] and data['Team Initials']==initialswinner:
         print(data['Player Name'])
-    if data['Player Name']== "Ruben GALVAN":
-        print('aparece')
 
+print('----------------------------------------------------------------------------')
+print("Jugadores de " + second)
 
+for data in datosPlayers:
+    if matchId == data['MatchID'] and data['Team Initials']==initialsSecond:
+        print(data['Player Name'])
 
 
 
