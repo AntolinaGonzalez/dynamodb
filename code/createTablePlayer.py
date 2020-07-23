@@ -20,13 +20,13 @@ def create_players_table(dynamodb=None):
         ],
         AttributeDefinitions=[
             {
-                'AttributeName': 'Player Name',
-                'AttributeType': 'S'
+                'AttributeName': 'MatchID',
+                'AttributeType': 'N'
             },
 
             {
-                'AttributeName': 'MatchID', 
-                'AttributeType': 'N'
+                'AttributeName': 'Player Name', 
+                'AttributeType': 'S'
             },
 
         ],
