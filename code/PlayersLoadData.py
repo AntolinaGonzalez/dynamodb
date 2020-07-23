@@ -7,7 +7,7 @@ def load_players(players, dynamodb=None):
     if not dynamodb:
         dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
-    table = dynamodb.Table('WorldPlayers')
+    table = dynamodb.Table('WorldPlayersFinal')
     for player in players:
         name = player['Player Name']
         match_ID = player['MatchID']
@@ -19,6 +19,6 @@ def load_players(players, dynamodb=None):
 
 
 if __name__ == '__main__':
-    with open("../WorldCupPlayers.json") as json_file:
+    with open("../StagesFinal.json") as json_file:
         players_list = json.load(json_file, parse_float=Decimal)
     load_players(players_list)
