@@ -98,7 +98,7 @@ while True:
 
         while int(x) not in ediciones: 
 
-            print('\n\t3- Datos final de copa segun año: Estadio, Campeon, subcampeon y planteles  \n\n')
+            print('\n\t3- Datos final de copa segun año ingresado: (Estadio, Finalistas y planteles)  \n\n')
 
             imprimir_Lista_n_columnas(ediciones, 10 )
 
@@ -108,9 +108,9 @@ while True:
 
         datos = datos_final(x)
 
-        print('\n--------------------------------------------------------------------------')
+        print('\n-----------------------------------------------------------------------------------')
         print(f'\n\tEstadio donde se disputó la final: {datos[1]}            año {x}')
-        print('----------------------------------------------------------------------------')
+        print('-------------------------------------------------------------------------------------')
         print("\n\tCampeón:  " + datos[2] + "\n\n")
 
         for data in datosPlayersFinal:
@@ -119,7 +119,7 @@ while True:
                 
                 print("\t" + data['Player Name'])
 
-        print('----------------------------------------------------------------------------')
+        print('-------------------------------------------------------------------------------------')
         print("\n\tSubcampeón:  " + datos[4] + "\n\n")
 
         for data in datosPlayersFinal:
@@ -137,8 +137,45 @@ while True:
 
 
     elif x == '4':
-        print('---Consulta cuatro----')
-        x = input()
+
+        z = 0
+
+        y = ' '
+          
+        while int(z) not in ediciones: 
+
+            print('\n\t4 - Fase maxima alcanzada por un pais ingresado en una edicion particular\n\n')
+
+            imprimir_Lista_n_columnas(ediciones, 10 )
+
+            z =input('\n\n\tIngrese un año para consultar:\t')
+
+            screen_clear()
+
+        
+        screen_clear()
+
+        
+        while y not in paises_participantes_edicion_particular(z):
+
+            screen_clear()
+
+            print(f'\n\t4 - Fase maxima alcanzada por un pais ingresado en una edicion particular \n\n')
+
+            print(f"\tPaises participantes para el año: {z}\n")
+
+            paises = paises_participantes_edicion_particular(z)
+
+            imprimir_Lista_n_columnas(paises, 5 )
+
+            y = input('\n\n\tIngrese un pais para consultar:\t')
+
+        screen_clear()
+
+        stage_maximo(y,z)
+
+        input("\nPresione cualquier tecla para volver al menu")
+        
     elif x == '5':
         print('---Consulta cinco----')
         x = input()

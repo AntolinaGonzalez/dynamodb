@@ -35,6 +35,7 @@ def screen_clear():
 
 def menuOpciones():
 
+	print('\n\n')
     print('\t+----------------------------------------------------------------------------------+')
     print('\t|                                Menú de opciones                                  |')
     print('\t+----------------------------------------------------------------------------------+')
@@ -43,9 +44,9 @@ def menuOpciones():
     print('\t|                                                                                  |')
     print('\t| 2 - Cantidad de goles en una Copa Mundial a partir de un año y pais ingresado    |')
     print('\t|                                                                                  |')
-    print('\t| 3 - Datos final de copa segun año: Estadio, Campeon, subcampeon y planteles      |')
+    print('\t| 3- Datos final de copa segun año ingresado: (Estadio, Finalistas y planteles)    |')
     print('\t|                                                                                  |')
-    print('\t| 4 - Consulta cuatro                                                              |')
+    print('\t| 4- Fase maxima alcanzada por un pais ingresado en una edicion particular         |')
     print('\t|                                                                                  |')
     print('\t| 5 - Consulta cinco                                                               |')
     print('\t|                                                                                  |')
@@ -56,6 +57,7 @@ def menuOpciones():
 
 def portada():
 
+	print('\n\n')
     print('\t+----------------------------------------------------------------------------------+')
     print('\t|                          Trabajo Final - Gestión de Datos                        |')
     print('\t|   UTN-Frre                    Gestor: DynamoDB Amazon                  año 2020  |')
@@ -408,6 +410,8 @@ def campeon_anio_particular(anio):
 
 def datos_paises(): 
 
+	#retorna un dict() con key = año de cada edicion; valor: (campeon,  goles a favor, goles en contra)
+
 	salida = dict()
 
 	for edicion in ediciones: 
@@ -425,6 +429,8 @@ def datos_paises():
 #---------------------------------------------------------------------------------------------------------------------
 
 def campeon_con_max_dif_goles(): 
+
+	#retorna una lista() con el nombre del equipo campeon y su diferencia de goles (siendo esta la maxima en todas las ediciones)
 
 	paises = datos_paises()
 
@@ -548,4 +554,40 @@ def imprimir_Lista_n_columnas(unaLista, n ):
 				print("|  ", unaLista[cont], end=' |')
 				cont += 1  
 
+#--------------------------------------------------------------------------------------------------------------
 
+def stage_maximo(pais, anio):
+
+	fase_a_numero = {'Group 1': 1,'Group 2': 1, 'Group 3': 1, 'Group 4': 1,
+					 'Group 5': 1,'Group 6': 1, 'Group 7': 1, 'Group 8': 1,
+					 'Group A': 1,'Group B': 1, 'Group C': 1, 'Group D': 1,
+					 'Group E': 1,'Group F': 1, 'Group G': 1, 'Group H': 1,
+					 "Round of 16": 2, "Quarter-finals":3, "Semi-finals":4, 
+					 "Final": 5}
+
+	numero_a_fase = {1: 'Grupos', 2: 'Octavos de Final', 3: 'Cuartos de Final',
+					 4: 'Semi Final', 5: 'Final'}
+
+	if campeon_anio_particular(anio) == pais: 
+
+		return print(f'\n\t {pais} resultó campeón de la edicion {anio}')
+
+	elif not es_pais_edicion_particular(pais, anio):
+
+		return print(f'\n\t{pais} no participo de la edicion {anio}')
+
+	else:
+
+		a = 0
+
+		for match in datosMatches:
+
+			if match['Year'] == int(anio):
+
+				if match['Home Team Name'] == pais or match['Away Team Name'] == pais:
+
+					if a < fase_a_numero[match['Stage']]:
+
+						a = fase_a_numero[match['Stage']]
+
+		return print(f'\n\t{pais} disputó la fase de {numero_a_fase[a]} en la edicion {anio} ')
