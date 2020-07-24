@@ -177,8 +177,18 @@ while True:
         input("\nPresione cualquier tecla para volver al menu")
         
     elif x == '5':
-        print('---Consulta cinco----')
-        x = input()
+        
+        screen_clear()
+
+        print("\n\n\t5- Arbitro con mas partidos dirigidos y la cantidad. \n\n")
+
+        arbitro_con_mas_partidos()
+
+        input("\n\nPresione cualquier tecla para volver al menu")
+    
     else:
+
+        portada()
+        input("\n\n\t\t\tPresione cualquier tecla para cerrar....")
         break
     

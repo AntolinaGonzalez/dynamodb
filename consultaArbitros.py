@@ -12,7 +12,12 @@ arbitrosFinal=[]
 for data in datosMatches:
     if data['Referee'] not in arbitros:
         arbitros.append(data['Referee'])
+
+print(arbitros)
+
 cantidadPartidosArbitrados=[0]*len(arbitros)
+
+print (cantidadPartidosArbitrados)
 
 
 for i in range(len(arbitros)-1):
@@ -20,11 +25,7 @@ for i in range(len(arbitros)-1):
         if data['Referee']== arbitros[i]:
             cantidadPartidosArbitrados[i]= cantidadPartidosArbitrados[i] + 1
 
-x= cantidadPartidosArbitrados.index (max(cantidadPartidosArbitrados))
-print(arbitros[x])
+x= cantidadPartidosArbitrados.index(max(cantidadPartidosArbitrados))
 
-#todos los arbitros que referenciaron una final
+print(f"El arbitro {arbitros[x]} es el que mas partidos dirigió, con un total de:  {cantidadPartidosArbitrados}")
 
-for data in datosMatches:
-    if data['Stage']=='Final':
-       arbitrosFinal.append(data['Referee'])
