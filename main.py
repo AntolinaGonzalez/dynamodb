@@ -23,171 +23,27 @@ while True:
     screen_clear()   
 
 
-#----------------------------------------------------------------
     if x == '1':
 
-        print('\n\t1 - Paises participantes de la Copa Mundial a partir de un año ingresado  \n\n')
+        Contulta_1()
 
-        y = 0
-
-        while int(y) not in ediciones: 
-
-            imprimir_Lista_n_columnas(ediciones, 10 )
-
-            y =input('\n\n\tIngrese un año para consultar:\t')
-
-            screen_clear()
-
-        print('\n\n\tPaises participantes del año: '+ y + "\n")
-        
-        for pais in paises_participantes_edicion_particular(y):
-
-            print("\t\t",pais)
-
-        
-        input("\nPresione cualquier tecla para volver al menu")
-
-
-    #----------------------------------------------------------------------------------------------------
     elif x == '2':
 
-        z = 0
-
-        y = ' '
-          
-        while int(z) not in ediciones: 
-
-            print('\n\t2 - Cantidad de goles en una Copa Mundial a partir de un año y pais ingresado  \n\n')
-
-            imprimir_Lista_n_columnas(ediciones, 10 )
-
-            z =input('\n\n\tIngrese un año para consultar:\t')
-
-            screen_clear()
-
-        
-        screen_clear()
-
-        
-        while y not in paises_participantes_edicion_particular(z):
-
-            screen_clear()
-
-            print(f'\n\t2 - Cantidad de goles en una Copa Mundial a partir de un año y pais ingresado  \n\n')
-
-            print(f"\tPaises participantes para el año: {z}\n")
-
-            paises = paises_participantes_edicion_particular(z)
-
-            imprimir_Lista_n_columnas(paises, 5 )
-
-            y = input('\n\n\tIngrese un pais para consultar:\t')
-
-               
-        screen_clear()
-            
-        print(f"\n\n\tLa cantidad de goles de {y} en la edicion {z} fué {cantidad_goles_edicion_particular(y, z)} goles")
-
-        input("\nPresione cualquier tecla para volver al menu")
+        consulta_2()
        
-
-    #---------------------------------------------------------------------------------------------------------------------
     elif x == '3':
 
-        x = 1
-
-        while int(x) not in ediciones: 
-
-            print('\n\t3- Datos final de copa segun año ingresado: (Estadio, Finalistas y planteles)  \n\n')
-
-            imprimir_Lista_n_columnas(ediciones, 10 )
-
-            x =input('\n\n\tIngrese un año para consultar:\t')
-
-            screen_clear()
-
-        datos = datos_final(x)
-
-        print('\n-----------------------------------------------------------------------------------')
-        print(f'\n\tEstadio donde se disputó la final: {datos[1]}            año {x}')
-        print('-------------------------------------------------------------------------------------')
-        print("\n\tCampeón:  " + datos[2] + "\n\n")
-
-        for data in datosPlayersFinal:
-
-            if datos[0] == data['MatchID'] and datos[3] == data['Team Initials']:
-                
-                print("\t" + data['Player Name'])
-
-        print('-------------------------------------------------------------------------------------')
-        print("\n\tSubcampeón:  " + datos[4] + "\n\n")
-
-        for data in datosPlayersFinal:
-
-            if datos[0] == data['MatchID'] and datos[5] == data['Team Initials']:
-                
-                print("\t" + data['Player Name'])
-
-
-        input("\nPresione cualquier tecla para volver al menu")
-        
-
-        
-    #------------------------------------------------------------------------------------------------------------
-
-
+        consulta_3()
+          
     elif x == '4':
 
-        z = 0
-
-        y = ' '
-          
-        while int(z) not in ediciones: 
-
-            print('\n\t4 - Fase maxima alcanzada por un pais ingresado en una edicion particular\n\n')
-
-            imprimir_Lista_n_columnas(ediciones, 10 )
-
-            z =input('\n\n\tIngrese un año para consultar:\t')
-
-            screen_clear()
-
-        
-        screen_clear()
-
-        
-        while y not in paises_participantes_edicion_particular(z):
-
-            screen_clear()
-
-            print(f'\n\t4 - Fase maxima alcanzada por un pais ingresado en una edicion particular \n\n')
-
-            print(f"\tPaises participantes para el año: {z}\n")
-
-            paises = paises_participantes_edicion_particular(z)
-
-            imprimir_Lista_n_columnas(paises, 5 )
-
-            y = input('\n\n\tIngrese un pais para consultar:\t')
-
-        screen_clear()
-
-        stage_maximo(y,z)
-
-        input("\nPresione cualquier tecla para volver al menu")
+        consulta_4()
         
     elif x == '5':
         
-        screen_clear()
-
-        print("\n\n\t5- Arbitro con mas partidos dirigidos y la cantidad. \n\n")
-
-        arbitro_con_mas_partidos()
-
-        input("\n\nPresione cualquier tecla para volver al menu")
+        consulta_5()
     
     else:
-
         portada()
         input("\n\n\t\t\tPresione cualquier tecla para cerrar....")
         break
