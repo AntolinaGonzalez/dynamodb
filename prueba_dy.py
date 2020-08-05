@@ -22,9 +22,19 @@ if not dynamodb:
 
     dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
-table = dynamodb.Table('WorldPlayers')
-response = table.scan(
-    FilterExpression=Attr('RoundID').eq("201")
+table = dynamodb.Table('WorldMatches')
+responseMatch = table.scan(
+    FilterExpression=Attr('Stage').eq("Final") & (Attr('Home Team Name').eq("Argentina") | Attr('Away Team Name').eq("Argentina"))
 )
 
-pprint(response)
+datos = responseMatch['Items']
+
+tablePlayers = dynamodb.Table('WorldPlayersFinal')
+responsePlayers = tablePlayers.scan(
+    FilterExpression = Attr('Team Initials').eq("ARG")
+)
+
+datosPlayers = responsePlayers['Items']
+
+for i in datosPlayers: 
+    print(i['Player Name'])
