@@ -1,0 +1,36 @@
+Componentes Basicos dynamodb
+
+En DynamoDB se trabaja principalmente con tablas, elementos y atributos. Una tabla es una colección de elementos y cada elemento es una colección de atributos. DynamoDB utiliza claves principales para identificar de forma exclusiva cada uno de los elementos de la tabla e índices secundarios para proporcionar mayor flexibilidad a la hora de realizar consultas. Puede utilizar Flujos de DynamoDB para capturar los eventos de modificación de datos en las tablas de DynamoDB.
+
+Tablas, elementos y atributos
+
+Tablas – Al igual que otros sistemas de administración de bases de datos, DynamoDB almacena datos en tablas. Una tabla es una colección de datos.
+Ntros utilizamos 3 dataset los cuales hace referencia a los mundiales.
+
+Elementos – Cada tabla contiene cero o más elementos. Un elemento es un grupo de atributos que puede identificarse de forma exclusiva entre todos los demás elementos.
+
+Atributos – Cada elemento se compone de uno o varios atributos. Un atributo es un componente fundamental de los datos, que no es preciso dividir más.
+
+Ntros utilizamos tres tablas, las cuales se trata de los mundiales de 50 al 2014
+
+Tabla WordCup - MAtches y Players
+
+
+Claves
+La clave de partición de un elemento también se denomina atributo hash. El término atributo hash alude al uso de una función hash interna en DynamoDB para distribuir los elementos de datos de manera uniforme entre las particiones, según sus valores de clave de partición.
+
+La clave de ordenación de un elemento también se denomina atributo de rango. El término atributo de rango alude al hecho de que DynamoDB almacena en ubicaciones físicamente contiguas todos los elementos que tienen la misma clave de partición, ordenados según el valor de la clave de ordenación.
+Los únicos tipos de datos que se permiten para los atributos de clave principal son String, Number y Binary
+
+
+utilizaremos AWS SDK para Python (Boto 3) 
+
+ProvisionedThroughput (for provisioned tables) – Número de lecturas y escrituras por segundo que se requieren para esta tabla. DynamoDB reserva recursos de almacenamiento y del sistema suficientes para cumplir en todo momento los requisitos de rendimiento. Puede usar la acción UpdateTable para cambiar estos valores más adelante si fuera preciso. No es necesario especificar los requisitos de almacenamiento de una tabla, porque DynamoDB se encarga de administrar todas las asignaciones del almacenamiento.
+
+
+Protección de datos en DynamoDB
+
+El cifrado en reposo de DynamoDB proporciona una capa adicional de seguridad de los datos, porque los protege en una tabla cifrada —que incluye su clave principal, los índices secundarios locales y globales, las secuencias, las tablas globales
+Los administradores de IAM controlan quién está autenticado (ha iniciado sesión) y autorizado (tiene permisos) para utilizar recursos de Amazon DynamoDB.  
+
+

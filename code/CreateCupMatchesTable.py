@@ -6,7 +6,7 @@ def create_matches_table(dynamodb=None):
         dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
     table = dynamodb.create_table(
-        TableName='WorldMatches',
+        TableName='WorldMatches1',
         KeySchema=[
             {
                 'AttributeName': 'MatchID',
@@ -31,8 +31,8 @@ def create_matches_table(dynamodb=None):
 
         ],
         ProvisionedThroughput={
-            'ReadCapacityUnits': 1,
-            'WriteCapacityUnits': 1
+            'ReadCapacityUnits': 5,
+            'WriteCapacityUnits': 5
         }
     )
     return table
