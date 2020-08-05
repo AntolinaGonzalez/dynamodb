@@ -7,7 +7,7 @@ def load_matches(matches, dynamodb=None):
     if not dynamodb:
         dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
-    table = dynamodb.Table('WorldMatches')
+    table = dynamodb.Table('WorldMatches1')
     for match in matches:
         year = match['Year']
         local = match['Home Team Name']

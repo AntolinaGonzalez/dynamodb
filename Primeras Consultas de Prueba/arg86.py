@@ -1,6 +1,6 @@
 from pprint import pprint
 import boto3
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key, Attr
 
 
 dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
@@ -9,12 +9,12 @@ matchesTable = dynamodb.Table('WorldMatches')
 #playerTable = dynamodb.Table('WorldPlayers')
 #cupTable = dynamodb.Table('WorldCup')
 
-responseMatches = matchesTable.scan()
+#responseMatches = matchesTable.scan()
 #responsePlayer = playerTable.scan()
 #responseCup = cupTable.scan()
 year = 1986
 cont = 0
-datos = responseMatches['Items']
+#datos = responseMatches['Items']
 #response = table.scan()
 #data2 = response['Items']
 #devuelve toda la tabla
@@ -35,8 +35,8 @@ datos = responseMatches['Items']
 #         if respuesta[j]== respuesta1[i]:
 #             resultado.append(respuesta[j])
 # print(resultado)
-for data in datos:
-    if data['Year']== year:
-        if data['Home Team Initials']== "ARG" or data['Away Team Initials']== "ARG":
-            cont = cont +1
-print(cont)
+responseMatches = matchesTable.scan(
+    FilterExpression = Attr('Stage').eq('Group 1')
+)
+items = responseMatches['Items']
+print(items)
