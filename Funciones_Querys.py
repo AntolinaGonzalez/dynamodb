@@ -44,11 +44,11 @@ def menuOpciones():
     print('\t|                                                                                  |')
     print('\t| 2- Cantidad de goles en una Copa Mundial a partir de un año y pais ingresado.    |')
     print('\t|                                                                                  |')
-    print('\t| 3- Datos final de copa segun año ingresado: (Estadio, Finalistas y planteles).   |')
+    print('\t| 3- Datos final de copa segun año ingresado: (estadio, finalistas y planteles).   |')
     print('\t|                                                                                  |')
     print('\t| 4- Fase maxima alcanzada por un pais ingresado en una edicion particular.        |')
     print('\t|                                                                                  |')
-    print('\t| 5- Arbitro con mas partidos dirigidos y la cantidad.                             |')
+    print('\t| 5- Arbitro con mas partidos dirigidos y la cantidad de partidos.                 |')
     print('\t|                                                                                  |')
     print('\t| 0 - Salir                                                                        |')
     print('\t+----------------------------------------------------------------------------------+')
@@ -322,7 +322,7 @@ def datos_final(anio):
             salida.append(data['MatchID'])
             salida.append(data['Stadium'])
 
-            if data['Home Team Goals'] > data['Away Team Goals']:
+            if data['Home Team Goals'] >= data['Away Team Goals']:
                 
                 salida.append(data['Home Team Name'])
                 salida.append(data['Home Team Initials'])
@@ -697,7 +697,7 @@ def consulta_3():
 
     while int(x) not in ediciones: 
 
-        print('\n\t3- Datos final de copa segun año ingresado: (Estadio, Finalistas y planteles)  \n\n')
+        print('\n\t3- Datos final de copa segun año ingresado: (estadio, finalistas y planteles)  \n\n')
 
         imprimir_Lista_n_columnas(ediciones, 10 )
 
@@ -780,7 +780,7 @@ def consulta_5():
 
     screen_clear()
 
-    print("\n\n\t5- Arbitro con mas partidos dirigidos y la cantidad. \n\n")
+    print("\n\n\t5- Arbitro con mas partidos dirigidos y la cantidad de partidos. \n\n")
 
     arbitro_con_mas_partidos()
 
