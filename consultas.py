@@ -11,19 +11,13 @@ finalPlayersTable = dynamodb.Table('WorldPlayersFinal')
 
 
 def datos_segun_edicion(unAnio): 
-	responseCups = cupsTable.get_item(Key ={'Year':unAnio})
+	responseCups = cupsTable.get_item(Key = {'Year':unAnio})
 
 	return responseCups['Item']
 
 
-
-
 def jugadores_argentina_final(): 
-	responseMatch = matchesTable.scan(
-    	FilterExpression=Attr('Stage').eq("Final") & (Attr('Home Team Name').eq("Argentina") | Attr('Away Team Name').eq("Argentina"))
-	)
-
-	datos = responseMatch['Items']
+	
 	responsePlayers = finalPlayersTable.scan(
 	    FilterExpression = Attr('Team Initials').eq("ARG")
 	)
